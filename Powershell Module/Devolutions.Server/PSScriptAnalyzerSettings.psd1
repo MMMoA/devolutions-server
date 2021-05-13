@@ -2,7 +2,7 @@
 @{
     Severity     = @('Error', 'Warning')
 
-    ExcludeRules = @('PSAvoidUsingCmdletAliases'
-
+    ExcludeRules = @('PSAvoidUsingCmdletAliases',
+        'PSAvoidGlobalVars'
     )
 }
