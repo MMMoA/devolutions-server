@@ -19,7 +19,7 @@ function Protect-ResourceToHexString {
     }
     
     PROCESS{    
-        $bytes = Encrypt-String $Global:DSSessionKey $unencryptedString
+        $bytes = Protect-String $Global:DSSessionKey $unencryptedString
         return Convert-BytesToHex $bytes
     }
 }

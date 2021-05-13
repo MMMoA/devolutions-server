@@ -1,4 +1,4 @@
-function Decrypt-String($key, $encryptedStringWithIV) {
+function Unprotect-String($key, $encryptedStringWithIV) {
 <#
 .SYNOPSIS
 Legacy - Do not use

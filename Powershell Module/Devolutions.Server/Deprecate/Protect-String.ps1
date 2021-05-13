@@ -1,4 +1,4 @@
-function Encrypt-String($key, $unencryptedString) {
+function Protect-String($key, $unencryptedString) {
 <#
 .SYNOPSIS
 Legacy - Do not use

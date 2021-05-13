@@ -1,4 +1,4 @@
-function Encrypt-RSA {
+function Protect-RSA {
 <#
 .SYNOPSIS
 Legacy - Do not use
@@ -20,7 +20,7 @@ Legacy - Do not use
 	)
 
 	BEGIN {
-        Write-Verbose '[Encrypt-RSA] begin...'
+        Write-Verbose '[Protect-RSA] begin...'
 	}
 	
     PROCESS{
@@ -42,9 +42,9 @@ Legacy - Do not use
 	
 	END{
         If ($?) {
-          Write-Verbose '[Encrypt-RSA] Completed Successfully.'
+          Write-Verbose '[Protect-RSA] Completed Successfully.'
         } else {
-	        Write-Verbose '[Encrypt-RSA] ended with errors...'
+	        Write-Verbose '[Protect-RSA] ended with errors...'
 		}
 	}
 }

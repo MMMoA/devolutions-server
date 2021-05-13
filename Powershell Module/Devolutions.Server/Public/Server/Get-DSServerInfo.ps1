@@ -50,7 +50,7 @@ This endpoint does not require authentication.
 					$publickey_mod = $jsonContent.data.publicKey.modulus
 					$publickey_exp = $jsonContent.data.publicKey.exponent
 					$session_Key = New-CryptographicKey
-					$safeSessionKey = Encrypt-RSA -publickey_mod $publickey_mod -publickey_exp $publickey_exp -session_Key $session_Key
+					$safeSessionKey = Protect-RSA -publickey_mod $publickey_mod -publickey_exp $publickey_exp -session_Key $session_Key
 
 					[System.Version]$instanceVersion = $jsonContent.data.version
 
