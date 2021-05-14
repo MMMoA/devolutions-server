@@ -19,8 +19,6 @@ function New-DSRDPEntry {
         [string]$Username,
         #Entry's password
         [string]$Password,
-        #Entry's mnemonic passwordF
-        [string]$MnemonicPassword,
         #Entry's vault ID
         [guid]$VaultID = [guid]::Empty,
         #Entry's location in the vault (Folder name, not ID)
@@ -196,9 +194,14 @@ function New-DSRDPEntry {
                 connectionType        = 1
                 group                 = $Group
                 name                  = $Name
+                domain                = $Domain
                 displayMode           = $DisplayMode
                 DisplayMonitor        = $DisplayMonitor
                 displayVirtualDesktop = $DisplayVirtualDesktop
+                repositoryId          = $VaultID
+                description           = $Description
+                keywords              = $Tags
+                expiration            = $Expiration
                 data                  = @{
                     host                        = $HostName 
                     adminMode                   = $AdminMode

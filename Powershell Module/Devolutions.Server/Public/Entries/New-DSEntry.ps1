@@ -7,6 +7,7 @@ function New-DSEntry {
     
     #>
     [CmdletBinding()]
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSReviewUnusedParameter', '', Scope = 'Function')]
     PARAM (
         [ValidateNotNullOrEmpty()]
         #Connection type (Supported entries are Credentials or RDPConfigured. More to come...)
