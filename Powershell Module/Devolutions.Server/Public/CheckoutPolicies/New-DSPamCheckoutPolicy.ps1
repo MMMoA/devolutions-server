@@ -46,16 +46,13 @@ function New-DSPamCheckoutPolicy {
     
     PROCESS {
         try {
-            $isNameUsed = $false
-
             #1. Check all policies for matching name
             if ((Get-DSPamCheckoutPolicies -Count).Body -gt 0) {
                 $checkoutPoliciesList = (Get-DSPamCheckoutPolicies).Body
                 
                 $checkoutPoliciesList | ForEach-Object {
-                    if ($_.name -eq $name) {
-                        $isNameUsed = $true
-                    }
+                    [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseDeclaredVarsMoreThanAssignments', $null)]
+                    $isNameUsed = if ($_.name -eq $name) { $true } else { $false }
                 }
             }
 

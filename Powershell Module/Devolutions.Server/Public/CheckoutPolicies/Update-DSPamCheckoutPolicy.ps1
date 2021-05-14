@@ -41,7 +41,7 @@ function Update-DSPamCheckoutPolicy {
         Write-Verbose '[Update-DSPamFolder] Begin...'
 
         if ([string]::IsNullOrWhiteSpace($Global:DSSessionToken)) {
-            throw "Session does not seem authenticated, call New-DSSession."
+            throw 'Session does not seem authenticated, call New-DSSession.'
         }
     }
     PROCESS {
@@ -69,37 +69,37 @@ function Update-DSPamCheckoutPolicy {
                             { $_.Key -eq 'allowCheckoutOwnerAsApprover' } { 
                                 if ($_.Value -notin (0, 1, 2) ) { 
                                     $isValid = $false 
-                                    Write-Host "Allow checkout owner as approver value should be between 0 and 2 (Inclusivly)." -ForegroundColor Red
+                                    Write-Warning 'Allow checkout owner as approver value should be between 0 and 2 (Inclusivly).' -ForegroundColor Red
                                 }
                             }
                             { $_.Key -eq 'checkoutApprovalMode' } { 
                                 if ($_.Value -notin (0, 1, 2)) {
                                     $isValid = $false 
-                                    Write-Host "Checkout approval mode value should be between 0 and 2 (Inclusivly)." -ForegroundColor Red
+                                    Write-Warning 'Checkout approval mode value should be between 0 and 2 (Inclusivly).' -ForegroundColor Red
                                 }
                             }
                             { $_.Key -eq 'checkoutReasonMode' } { 
                                 if ($_.Value -notin (0, 1, 2 , 3) ) {
                                     $isValid = $false 
-                                    Write-Host "Checkout reason mode value should be between 0 and 3 (Inclusivly)." -ForegroundColor Red
+                                    Write-Warning 'Checkout reason mode value should be between 0 and 3 (Inclusivly).' -ForegroundColor Red
                                 }
                             }                        
                             { $_.Key -eq 'includeAdminsAsApprovers' } {
                                 if ($_.Value -notin (0, 1, 2) ) {
                                     $isValid = $false
-                                    Write-Host "Include admins as approvers value should be between 0 and 2 (Inclusivly)." -ForegroundColor Red
+                                    Write-Warning 'Include admins as approvers value should be between 0 and 2 (Inclusivly).' -ForegroundColor Red
                                 }
                             }
                             { $_.Key -eq 'includeManagersAsApprovers' } {
                                 if ($_.Value -notin (0, 1, 2) ) {
                                     $isValid = $false 
-                                    Write-Host "Include managers as approvers value should be between 0 and 2 (Inclusivly)." -ForegroundColor Red
+                                    Write-Warning 'Include managers as approvers value should be between 0 and 2 (Inclusivly).' -ForegroundColor Red
                                 }
                             } 
                             { $_.Key -eq 'checkoutTime' } {
                                 if ($_.Value -le 0) {
                                     $isValid = $false 
-                                    Write-Host "Checkout time value of 0 or less is not accepted." -ForegroundColor Red
+                                    Write-Warning 'Checkout time value of 0 or less is not accepted.' -ForegroundColor Red
                                 }
                             }         
                         }
@@ -108,7 +108,7 @@ function Update-DSPamCheckoutPolicy {
                             $policyInfos[$_.Key] = $_.Value
                         }
                         else {
-                            Write-Host "Value was ignored." -ForegroundColor Red
+                            Write-Warning 'Value was ignored.' -ForegroundColor Red
                         }
                     }
                 }
@@ -123,7 +123,7 @@ function Update-DSPamCheckoutPolicy {
                 return $res
             }
             else {
-                Write-Host "[Update-DSPamCheckoutPolicy] Checkout policy couldn't be found. Make sure that you are using the correct checkout policy ID and try again." -ForegroundColor Red
+                Write-Warning "[Update-DSPamCheckoutPolicy] Checkout policy couldn't be found. Make sure that you are using the correct checkout policy ID and try again." -ForegroundColor Red
             }   
         }
         catch { 

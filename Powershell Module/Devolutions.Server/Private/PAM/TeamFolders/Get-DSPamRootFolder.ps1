@@ -12,7 +12,6 @@ function Get-DSPamRootFolder {
     #>
     [CmdletBinding()]
     param(		
-        [switch]$IncludeRoot
     )
         
     BEGIN {

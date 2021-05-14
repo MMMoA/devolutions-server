@@ -12,18 +12,6 @@ function Remove-DSLogs {
     #>
         [CmdletBinding()]
         param(
-            [Parameter()]
-            [switch]$ConnectionLog,
-            [Parameter()]
-            [switch]$LoginHistory,
-            [Parameter()]
-            [switch]$LoginAttempts,
-            [Parameter()]
-            [switch]$LogMessage,
-            [Parameter()]
-            [switch]$BackupLog,
-            [Parameter()]
-            [switch]$PamLog
         )
         
         BEGIN {
@@ -60,8 +48,6 @@ function Remove-DSLogs {
                 logTablesCleanupInfo = $tableList
                 defaultLogCleanupInfo = $cleanupOptions
             }
-
-            $str = $body | ConvertTo-Json
 
             $params = @{
                 Uri = $URI

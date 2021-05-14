@@ -13,8 +13,6 @@ function Get-DSEntriesLegacy{
         [CmdletBinding()]
         [OutputType([ServerResponse])]
         param(			
-            [Parameter(Mandatory)]
-            [string]$VaultId
         )
         
         BEGIN {
@@ -31,8 +29,6 @@ function Get-DSEntriesLegacy{
         PROCESS {
             try
             {   
-                $ctx = Set-DSVaultsContext $VaultId
-
                 $params = @{
                     Uri = $URI
                     Method = 'GET'

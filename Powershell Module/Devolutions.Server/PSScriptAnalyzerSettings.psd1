@@ -3,6 +3,7 @@
     Severity     = @('Error', 'Warning')
 
     ExcludeRules = @('PSAvoidUsingCmdletAliases',
-        'PSAvoidGlobalVars'
+        'PSAvoidGlobalVars',
+        'PSUseShouldProcessForStateChangingFunctions'
     )
 }

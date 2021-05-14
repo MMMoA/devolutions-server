@@ -32,7 +32,12 @@ function Close-DSSession {
 			}
 
 			#script scope
-			if (Get-Variable DSBaseUri -Scope Script -ErrorAction SilentlyContinue) { try { Remove-Variable -Name DSBaseURI -Scope Script -Force } catch { } }
+			try {
+				Remove-Variable DSBaseUri -Scope Script -ErrorAction SilentlyContinue
+			}
+			catch {
+				Write-Warning '[Close-DSSession] Error while removing DSBaseUri...'
+			}
 
 			#global scope
 			foreach ($Var in $GlobalVars.GetEnumerator()) {
