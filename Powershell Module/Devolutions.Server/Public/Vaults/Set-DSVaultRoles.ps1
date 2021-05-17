@@ -34,7 +34,6 @@ function Set-DSVaultRoles {
         -> Allowed user groups: Role1, Role3
     #>
     [CmdletBinding()]
-    [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSReviewUnusedParameter', 'AllowedRolesList')]
     PARAM (
         [ValidateNotNullOrEmpty()]
         #Vault's ID to update

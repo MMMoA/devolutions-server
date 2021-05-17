@@ -34,7 +34,6 @@ function Set-DSVaultApplications {
         -> Allowed applications: App1, App3
     #>
     [CmdletBinding()]
-    [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSReviewUnusedParameter', 'AllowedApplicationsList')]
     PARAM (
         [ValidateNotNullOrEmpty()]
         #Vault's ID to update

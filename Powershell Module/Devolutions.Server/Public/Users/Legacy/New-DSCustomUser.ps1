@@ -5,7 +5,7 @@ function New-DSCustomUser {
     [CmdletBinding()]
     param(
         #Passthrough switch param
-        [switch]$Force,
+        [switch]$IKnowWhatImDoing,
 
         #Base
         [ValidateNotNullOrEmpty()]
@@ -69,6 +69,11 @@ function New-DSCustomUser {
 
         $userId = [guid]::NewGuid()
 
+        $fullName = if ($firstName -and !$lastName) { $firstName } 
+        elseif (!$firstName -and $lastName) { $lastName }
+        elseif ( $firstName -and $lastName ) { "$firstName $lastName" }
+        else { "" }
+
         if ([string]::IsNullOrWhiteSpace($Global:DSSessionToken)) {
             throw "Session invalid. Please call New-DSSession."
         }
@@ -81,7 +86,7 @@ function New-DSCustomUser {
         }
 
         #Passthrough approach. Only for experimented user that knows what they're doing.
-        if ($Force) {
+        if ($IKnowWhatImDoing) {
             $PSBoundParameters.GetEnumerator() | ForEach-Object { $params.Body[$_.Key] = $_.Value }
         }
         #Hand holding approach
