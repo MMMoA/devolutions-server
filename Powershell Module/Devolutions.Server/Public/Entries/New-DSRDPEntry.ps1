@@ -8,6 +8,7 @@ function New-DSRDPEntry {
 
     #>
     [CmdletBinding()]
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSReviewUnusedParameter', '', Scope='Function')]
     PARAM (
         #Entry's name
         [ValidateNotNullOrEmpty()]
@@ -229,6 +230,7 @@ function New-DSRDPEntry {
                     }
                 }
                 events                = @{
+                    warnIfAlreadyOpened                      = $WarnIfAlreadyOpened
                     credentialViewedCommentIsRequired        = $CredentialViewedCommentIsRequired
                     ticketNumberIsRequiredOnCredentialViewed = $TicketNumberIsRequiredOnCredentialViewed
                     credentialViewedPrompt                   = $CredentialViewedPrompt

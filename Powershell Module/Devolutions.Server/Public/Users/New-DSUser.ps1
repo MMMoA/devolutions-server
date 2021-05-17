@@ -8,6 +8,7 @@ function New-DSUser {
         
     #>
     [CmdletBinding()]
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSReviewUnusedParameter', '', Scope = 'Function')]
     PARAM (
         #General tab
         [ValidateSet([Devolutions.RemoteDesktopManager.ServerUserType]::Builtin, [Devolutions.RemoteDesktopManager.ServerUserType]::Domain)]
@@ -16,30 +17,30 @@ function New-DSUser {
         [Devolutions.RemoteDesktopManager.UserLicenceTypeMode]$UserLicenseType = [Devolutions.RemoteDesktopManager.UserLicenceTypeMode]::Default,
 
         [ValidateNotNullOrEmpty()]
-        [string]$Username = $(throw "Username is null or empty. Please provide a valid username and try again."),
+        [string]$Username = $(throw 'Username is null or empty. Please provide a valid username and try again.'),
         [ValidateNotNullOrEmpty()]
         [string]$Password,
 
-        [string]$FirstName = "",
-        [string]$LastName = "",
-        [string]$Email = "",
-        [ValidateSet("English", "French", "German", "Spanish", "Hungarian", "Italian", "Dutch", "Polish (Poland)", "Russian", "Swedish", "Ukrainian", "Chinese (Simplified) Legacy", "Chinese (Traditional, Taiwan)", "Czech")]
-        [string]$Language = "English",
+        [string]$FirstName = '',
+        [string]$LastName = '',
+        [string]$Email = '',
+        [ValidateSet('English', 'French', 'German', 'Spanish', 'Hungarian', 'Italian', 'Dutch', 'Polish (Poland)', 'Russian', 'Swedish', 'Ukrainian', 'Chinese (Simplified) Legacy', 'Chinese (Traditional, Taiwan)', 'Czech')]
+        [string]$Language = 'English',
         [bool]$Enabled = $true,
         [bool]$UserMustChangePasswordAtNextLogin = $false,
 
         #Information tab
-        [string]$CompanyName = "",
-        [string]$JobTitle = "",
-        [string]$Department = "",
-        [string]$GravatarEmail = "",
-        [string]$Address = "",
-        [string]$State = "",
-        [string]$CountryName = "", #TODO Find a way to validateset country name
-        [string]$Phone = "",
-        [string]$Workphone = "",
-        [string]$CellPhone = "",
-        [string]$Fax = "",
+        [string]$CompanyName = '',
+        [string]$JobTitle = '',
+        [string]$Department = '',
+        [string]$GravatarEmail = '',
+        [string]$Address = '',
+        [string]$State = '',
+        [string]$CountryName = '', #TODO Find a way to validateset country name
+        [string]$Phone = '',
+        [string]$Workphone = '',
+        [string]$CellPhone = '',
+        [string]$Fax = '',
 
         #Application access tab
         [bool]$HasAccessRDM = $true,
@@ -60,18 +61,18 @@ function New-DSUser {
     )
     
     BEGIN {
-        Write-Verbose "[New-DSUser] Beginning..."
+        Write-Verbose '[New-DSUser] Beginning...'
 
         $URI = "$Script:DSBaseURI/api/security/user/save?csToXml=1"
 
         if ([string]::IsNullOrWhiteSpace($Global:DSSessionToken)) {
-            throw "Session invalid. Please call New-DSSession."
+            throw 'Session invalid. Please call New-DSSession.'
         }
     }
     
     PROCESS {
         if (($AuthenticationType -eq [Devolutions.RemoteDesktopManager.ServerUserType]::Builtin) -and !(Get-Variable -Name Password)) {
-            throw "Password is required when creating new user of type custom. Please provide a valid password and try again."
+            throw 'Password is required when creating new user of type custom. Please provide a valid password and try again.'
         }
 
         if (Get-Variable -Name Password) {
@@ -89,7 +90,7 @@ function New-DSUser {
 
         $RequestParams = @{
             URI    = $URI
-            Method = "PUT"
+            Method = 'PUT'
             Body   = $User | ConvertTo-Json
         }
 
@@ -99,10 +100,10 @@ function New-DSUser {
     
     END {
         if ($res.isSuccess) {
-            Write-Verbose "[New-DSUser] Completed successfully!"
+            Write-Verbose '[New-DSUser] Completed successfully!'
         }
         else {
-            Write-Verbose "[New-DSUser] Ended with errors..."
+            Write-Verbose '[New-DSUser] Ended with errors...'
             Write-Error $res.ErrorMessage
         }
     }

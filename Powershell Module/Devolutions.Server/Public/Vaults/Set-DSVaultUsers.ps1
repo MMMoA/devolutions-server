@@ -34,6 +34,7 @@ function Set-DSVaultUsers {
         -> Allowed users: User1, User3
     #>
     [CmdletBinding()]
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSReviewUnusedParameter', 'AllowedUsernameList')]
     PARAM (
         [ValidateNotNullOrEmpty()]
         #Vault's ID to update

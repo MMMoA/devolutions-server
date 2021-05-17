@@ -19,6 +19,7 @@ function Update-DSVault {
             Update-DSVault @NewVault -Verbose
     #>
     [CmdletBinding()]
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseBOMForUnicodeEncodedFile', '', Scope = 'Function')]
     PARAM (
         [ValidateNotNullOrEmpty()]
         #Vault's ID to update

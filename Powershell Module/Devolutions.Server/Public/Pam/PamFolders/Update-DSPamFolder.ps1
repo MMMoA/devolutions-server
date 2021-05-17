@@ -37,7 +37,7 @@ function Update-DSPamFolder {
         $URI = "$Script:DSBaseURI/api/pam/folders/$candidFolderID"
 
         if ([string]::IsNullOrWhiteSpace($Global:DSSessionToken)) {
-            throw "Session does not seem authenticated, call New-DSSession."
+            throw 'Session does not seem authenticated, call New-DSSession.'
         }
     }
     PROCESS {
@@ -86,7 +86,7 @@ function Update-DSPamFolder {
                     }
                     else {
                         #Todo: Invalid param
-                        Write-Host "Shouldnt see this"
+                        Write-Warning '[Update-DSPamFolder] Something went wrong. Please submit an issue if you stumble upon this message.'
                     }
                 }
             }

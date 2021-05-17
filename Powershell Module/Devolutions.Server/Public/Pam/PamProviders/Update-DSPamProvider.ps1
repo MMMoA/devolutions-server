@@ -75,7 +75,7 @@ function Update-DSPamProvider {
                     }
                     else {
                         #Todo: Invalid param
-                        Write-Host "Shouldnt see this"
+                        Write-Warning "[Update-DSPamProvider] Something went wrong. Please submit an issue if you stumble upon this message."
                     }
                 }
             }

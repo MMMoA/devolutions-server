@@ -97,8 +97,6 @@ function New-DSSSHShellEntry {
     
     BEGIN {
         Write-Verbose '[New-DSSSHShellEntry] Beginning...'
-
-        $URI = "$env:DS_URL/api/connections/partial/save"
         
         if ([string]::IsNullOrWhiteSpace($Global:DSSessionToken)) {
             throw 'Session does not seem authenticated, call New-DSSession.'
@@ -149,6 +147,7 @@ function New-DSSSHShellEntry {
                     functionKeyMode                        = $FunctionKeyMode
                     proxyMode                              = $ProxyMode
                     proxyType                              = $ProxyType
+                    remoteCommand                          = $RemoteCommand
                 }
                 event                 = @{
                     WarnIfAlreadyOpened                      = $WarnIfAlreadyOpened
