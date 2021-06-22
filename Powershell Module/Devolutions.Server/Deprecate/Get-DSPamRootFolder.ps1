@@ -1,15 +1,5 @@
+<#
 function Get-DSPamRootFolder {
-    <#
-    .SYNOPSIS
-    
-    .DESCRIPTION
-    
-    .EXAMPLE
-    
-    .NOTES
-    
-    .LINK
-    #>
     [CmdletBinding()]
     param(		
         [switch]$IncludeRoot
@@ -54,3 +44,4 @@ function Get-DSPamRootFolder {
         }
     }
 }
+#>
