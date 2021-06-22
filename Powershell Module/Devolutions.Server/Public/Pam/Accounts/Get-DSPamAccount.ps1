@@ -19,7 +19,7 @@ function Get-DSPamAccount {
     }
     PROCESS {
         $ProviderIDs = ($res = Get-DSPamProviders).isSuccess ? ($res.Body | Select-Object -ExpandProperty 'id') : $null
-        $AccountIDs = ($res = Get-DSPAMRootFolder).isSuccess ? ($res.Body.credentialIDs | Where-Object { $_ -notin $ProviderIDs } ) : (throw 'Could not find your PAM root folder. Please make sure your DVLS instance is reachable and try again.')
+        $AccountIDs = ($res = Get-DSPAMRootFolder).isSuccess ? ($res.Body.credentialIDs | Where-Object { $_ -notin $ProviderIDs } ) : $(throw 'Could not find your PAM root folder. Please make sure your DVLS instance is reachable and try again.')
             
         $RequestParams = @{
             URI    = ''
@@ -29,8 +29,8 @@ function Get-DSPamAccount {
         if ($All) {
             $Accounts = @()
             $AccountIDs | ForEach-Object {
-                $RequestParams.URI = "$Script:DSBaseURI/api/pam/credentials/${_}"
-                ($res = Invoke-DS @RequestParams).isSuccess ? ($Accounts += $res.Body) : (Write-Error "Trouble accessing account with ID $_.")
+                $RequestParams.URI = "$Script:DSBaseURI/api/pam/credentials/$_"
+                (($res = Invoke-DS @RequestParams).isSuccess ? ($Accounts += $res.Body) : (Write-Error "Trouble accessing account with ID $_.")) | Out-Null
             }
 
             $Response.isSuccess = $true
@@ -42,7 +42,7 @@ function Get-DSPamAccount {
 
             $RequestParams.URI = "$Script:DSBaseURI/api/pam/credentials/$AccountId"
 
-            ($res = Invoke-DS @RequestParams).isSuccess ? ($Response.Body = $res.Body) : (throw 'Could not find an account associated to this ID.')
+            ((($res = Invoke-DS @RequestParams).isSuccess) ? ($Response.Body = $res.Body) : $(throw 'Could not find an account associated to this ID.')) | Out-Null
             $Response.isSuccess = $res.isSuccess
             $Response.StandardizedStatusCode = 200
         }
