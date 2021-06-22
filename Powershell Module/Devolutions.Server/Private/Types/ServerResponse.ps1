@@ -5,6 +5,16 @@ class ServerResponse {
     [string] $ErrorMessage
     [int] $StandardizedStatusCode  
     [PSCustomObject] $Body
+
+    ServerResponse() {
+        $this.isSuccess = $null
+        $this.originalResponse = $null
+        $this.Body = $null
+        $this.Exception = $null
+        $this.ErrorMessage = $null
+        $this.StandardizedStatusCode = $null
+    }
+
     ServerResponse(
         [bool]$success,
         [Microsoft.PowerShell.Commands.WebResponseObject] $response = $null,
@@ -20,4 +30,6 @@ class ServerResponse {
         $this.ErrorMessage = $errorMessage
         $this.StandardizedStatusCode = $statusCode
     }
+
+    
 }
