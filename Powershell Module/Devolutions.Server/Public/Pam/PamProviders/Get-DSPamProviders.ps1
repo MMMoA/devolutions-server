@@ -20,16 +20,15 @@ function Get-DSPamProviders {
         $URI = "$Script:DSBaseURI/api/pam/providers"
 
         if ([string]::IsNullOrWhiteSpace($Global:DSSessionToken)) {
-                        throw "Session does not seem authenticated, call New-DSSession."
+            throw 'Session does not seem authenticated, call New-DSSession.'
         }
     }
     
     PROCESS {
         try {   	
             $params = @{
-                Uri            = $URI
-                Method         = 'GET'
-                #LegacyResponse = $true
+                Uri    = $URI
+                Method = 'GET'
             }
 
             Write-Verbose "[Get-DSPamProviders] about to call with $params.Uri"
@@ -38,7 +37,7 @@ function Get-DSPamProviders {
                 Write-Debug "[Response.Body] $($response.Body)"
             }
 
-            [ServerResponse] $response = Invoke-DS @params
+            $response = Invoke-DS @params
             return $response
         }
         catch {
