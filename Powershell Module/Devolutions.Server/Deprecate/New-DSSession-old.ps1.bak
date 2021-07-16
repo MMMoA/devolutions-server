@@ -55,7 +55,7 @@ Establishes a session with a Devolutions Server
 		}
 		
 		#body is typed as a HashTable, I'd like to offer an override that pushes the conversion downstream
-		$response = Invoke-WebRequest -URI $URI -Method Post -ContentType 'application/json'  -Body ($Body | ConvertTo-Json) -WebSession $Global:WebSession -SkipCertificateCheck
+		$response = Invoke-WebRequest -URI $URI -Method Post -ContentType 'application/json'  -Body ($Body | ConvertTo-Json) -WebSession $Global:WebSession
 		If ($null -ne $response) {
 			$jsonContent = $response.Content | ConvertFrom-JSon
 

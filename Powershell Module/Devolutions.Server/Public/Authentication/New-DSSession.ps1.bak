@@ -37,7 +37,7 @@ function New-DSSession {
     PROCESS {
         #1. Fetch server information
         try {
-            $ServerResponse = Invoke-WebRequest -Uri "$BaseURI/api/server-information" -Method 'GET' -SessionVariable Global:WebSession -SkipCertificateCheck
+            $ServerResponse = Invoke-WebRequest -Uri "$BaseURI/api/server-information" -Method 'GET' -SessionVariable Global:WebSession
 
             if ((Test-Json $ServerResponse.Content -ErrorAction SilentlyContinue) -and (@(Compare-Object (ConvertFrom-Json $ServerResponse.Content).PSObject.Properties.Name @('data', 'result')).Length -eq 0)) {
                 $ServerResponse = ConvertFrom-Json $ServerResponse.Content
@@ -87,7 +87,7 @@ function New-DSSession {
         }
 
         try {
-            $LoginResponse = Invoke-WebRequest @RequestParams -SkipCertificateCheck
+            $LoginResponse = Invoke-WebRequest @RequestParams
 
             if ((Test-Json $LoginResponse.Content -ErrorAction SilentlyContinue) -and (@(Compare-Object (ConvertFrom-Json $LoginResponse.Content).PSObject.Properties.Name @('data', 'result')).Length -eq 0)) {
                 $LoginContent = ConvertFrom-Json $LoginResponse.Content

@@ -22,7 +22,7 @@ function Close-DSSession {
         }
 
         try {
-            Invoke-WebRequest @RequestParams -WebSession $Global:WebSession -SkipCertificateCheck
+            Invoke-WebRequest @RequestParams -WebSession $Global:WebSession
         }
         catch {
             Write-Warning '[Close-DSSession] No session was previously established.'

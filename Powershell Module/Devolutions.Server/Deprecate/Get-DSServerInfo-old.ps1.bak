@@ -33,7 +33,7 @@ This endpoint does not require authentication.
 
 	PROCESS {
 		try {
-			$response = Invoke-WebRequest -URI $URI -Method 'GET' -SessionVariable Global:WebSession -SkipCertificateCheck
+			$response = Invoke-WebRequest -URI $URI -Method 'GET' -SessionVariable Global:WebSession
 
 			if (Test-Json $response.Content) {
 				$jsonContent = $response.Content | ConvertFrom-JSon
